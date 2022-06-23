@@ -1,2 +1,2 @@
-# Corona_Chart
-코로나 현황 차트
+# Favorite_Movie
+영화 검색, 영화 즐겨찾기 기능 구현입니다.
