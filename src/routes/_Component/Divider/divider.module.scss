@@ -1,0 +1,19 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/flexbox';
+@use '/src/styles/mixins/responsive';
+
+.dividerContainer {
+  @include flexbox.flexbox(start, center);
+  margin: 20px 0;
+}
+
+.dividerDiceIcon {
+  fill: colors.$DIVIDER_COLOR;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  margin-left: 20px;
+  border-top: 0.5px solid colors.$DIVIDER_COLOR;
+}
