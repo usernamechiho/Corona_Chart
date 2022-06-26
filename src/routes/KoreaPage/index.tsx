@@ -2,6 +2,7 @@ import styles from './koreaPage.module.scss'
 
 import { StatisticIcon } from 'assets/svgs'
 import Divider from 'routes/_Component/Divider'
+import KoreaChart from './KR-chart'
 
 const KoreaPage = () => {
   return (
@@ -13,8 +14,12 @@ const KoreaPage = () => {
       <Divider />
       <nav className={styles.datePickerNav}>DATE PICKER</nav>
       <main className={styles.contentContainer}>
-        <section>chart 1</section>
-        <section>chart 2</section>
+        <section>
+          <KoreaChart />
+        </section>
+        <section>
+          <KoreaChart />
+        </section>
         <article>ABOUT KOREA</article>
       </main>
     </div>
