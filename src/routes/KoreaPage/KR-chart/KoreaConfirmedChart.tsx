@@ -1,4 +1,4 @@
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from 'victory'
+import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryTooltip, LineSegment } from 'victory'
 
 import { useMount } from 'hooks'
 
@@ -6,11 +6,10 @@ import { fetchKrData, getMonthNameArray, getMonthFinalData } from 'services/covi
 import { useQuery } from 'react-query'
 import { useRecoilState } from 'recoil'
 import { krCovidInfoArray, monthNameArray } from 'states/covid'
-import { CovidType, CovidChartType } from 'types/covid'
 
 import Spinner from 'routes/_Component/Spinner'
 
-const KoreaChart = () => {
+const KoreaConfirmedChart = () => {
   const [krCovidData, setKrCovidData] = useRecoilState(krCovidInfoArray)
   const [monthName, setMonthName] = useRecoilState(monthNameArray)
 
@@ -21,16 +20,17 @@ const KoreaChart = () => {
     onSuccess: (data) => setKrCovidData(data),
   })
 
-  const makeObjectWithTwoArray = () => {
+  const activeStatsObject = () => {
     const dataArray = getMonthFinalData(krCovidData)
     const monthArray = monthName
 
-    const result = dataArray.map((item: any) => {
+    const result = dataArray.map((item: any, index) => {
       const monthNumber = item.Date.split('-')[1]
       const Month = monthArray[monthNumber - 1]
       return {
         Month,
-        Active: item.Active,
+        Confirmed: item.Confirmed,
+        label: `${item.Confirmed.toLocaleString()} 명`,
       }
     })
     return result
@@ -41,11 +41,33 @@ const KoreaChart = () => {
 
   return (
     <VictoryChart theme={VictoryTheme.material} domainPadding={20} width={500}>
-      <VictoryAxis tickValues={monthName} tickFormat={monthName} />
-      <VictoryAxis dependentAxis tickFormat={(x) => `${(x / 10000).toLocaleString()}만`} />
-      <VictoryBar data={makeObjectWithTwoArray()} x='Month' y='Active' />
+      <VictoryAxis
+        tickValues={monthName}
+        tickFormat={monthName}
+        style={{
+          grid: { stroke: '#90A4AE', strokeWidth: 0.5 },
+        }}
+      />
+      <VictoryAxis
+        style={{
+          grid: { stroke: '#90A4AE', strokeWidth: 0.5 },
+        }}
+        dependentAxis
+        tickFormat={(x) => `${(x / 10000).toLocaleString()}만`}
+      />
+      <VictoryBar
+        style={{ data: { fill: '#3792cb' } }}
+        animate={{
+          duration: 2000,
+          onLoad: { duration: 1000 },
+        }}
+        data={activeStatsObject()}
+        x='Month'
+        y='Confirmed'
+        labelComponent={<VictoryTooltip />}
+      />
     </VictoryChart>
   )
 }
 
-export default KoreaChart
+export default KoreaConfirmedChart

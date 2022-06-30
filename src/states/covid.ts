@@ -2,11 +2,11 @@ import { atom } from 'recoil'
 import { CovidType } from 'types/covid'
 
 export const krCovidInfoArray = atom<CovidType[]>({
-  key: '#krCovidInfoArray',
+  key: '#krCovidInfoArrayKey',
   default: [],
 })
 
 export const monthNameArray = atom<string[]>({
-  key: '#monthNameArray',
+  key: '#monthNameArrayKey',
   default: [],
 })
