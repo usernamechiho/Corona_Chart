@@ -1,0 +1,33 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/responsive';
+
+.sideBarContainer {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  z-index: 10;
+  width: 280px;
+  height: 100%;
+  color: colors.$SIDEBAR_FONT;
+  background: colors.$SIDEBAR_BACKGROUND;
+  border-right: 1px solid colors.$SIDEBAR_BORDER;
+  transition: all 0.3s;
+
+  @include responsive.after(MD) {
+    left: 0;
+  }
+
+  &.showSideBar {
+    left: 0;
+  }
+}
+
+.diceIcon {
+  margin: 50px 0 0 50px;
+}
+
+.hamburgerIconButton {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}

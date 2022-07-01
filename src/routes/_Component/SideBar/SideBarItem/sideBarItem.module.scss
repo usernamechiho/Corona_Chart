@@ -1,0 +1,59 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/flexbox';
+@use '/src/styles/mixins/responsive';
+
+.sideBarNav {
+  display: flex;
+  flex-direction: column;
+  margin: 80px 0 0 50px;
+}
+
+.sideBarListTag {
+  width: 100%;
+  height: 60px;
+  margin-top: 15px;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: colors.$SIDEBAR_FONT;
+  }
+
+  .iconText {
+    margin-right: 100px;
+  }
+
+  .homeIcon {
+    stroke: colors.$SIDEBAR_FONT;
+  }
+
+  .koreaIcon {
+    fill: colors.$SIDEBAR_FONT;
+  }
+
+  .japanIcon {
+    fill: colors.$SIDEBAR_FONT;
+  }
+}
+
+.isActive {
+  border-right: 5px solid colors.$SIDEBAR_ISACTIVE;
+
+  .homeIcon {
+    stroke: colors.$SIDEBAR_ISACTIVE;
+  }
+
+  .koreaIcon {
+    fill: colors.$SIDEBAR_ISACTIVE;
+  }
+
+  .japanIcon {
+    fill: colors.$SIDEBAR_ISACTIVE;
+  }
+
+  .iconText {
+    margin-right: 95px;
+    color: colors.$SIDEBAR_ISACTIVE;
+  }
+}
