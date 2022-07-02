@@ -24,9 +24,10 @@ const KoreaConfirmedChart = () => {
     const dataArray = getMonthFinalData(krCovidData)
     const monthArray = monthName
 
-    const result = dataArray.map((item: any, index) => {
+    const result = dataArray.map((item: any) => {
       const monthNumber = item.Date.split('-')[1]
       const Month = monthArray[monthNumber - 1]
+
       return {
         Month,
         Confirmed: item.Confirmed,
@@ -42,8 +43,6 @@ const KoreaConfirmedChart = () => {
   return (
     <VictoryChart theme={VictoryTheme.material} domainPadding={20} width={500}>
       <VictoryAxis
-        tickValues={monthName}
-        tickFormat={monthName}
         style={{
           grid: { stroke: '#90A4AE', strokeWidth: 0.5 },
         }}

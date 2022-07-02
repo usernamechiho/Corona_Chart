@@ -39,13 +39,9 @@ const KoreaDeathChart = () => {
   if (isLoading) return <Spinner />
   if (isFetching) return <Spinner />
 
-  console.log('confimed', krCovidData)
-
   return (
     <VictoryChart theme={VictoryTheme.material} domainPadding={20} width={500}>
       <VictoryAxis
-        tickValues={monthName}
-        tickFormat={monthName}
         style={{
           grid: { stroke: '#90A4AE', strokeWidth: 0.5 },
         }}
