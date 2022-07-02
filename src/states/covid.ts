@@ -6,6 +6,11 @@ export const krCovidInfoArray = atom<CovidType[]>({
   default: [],
 })
 
+export const jpCovidInfoArray = atom<CovidType[]>({
+  key: '#jpCovidInfoArrayKey',
+  default: [],
+})
+
 export const monthNameArray = atom<string[]>({
   key: '#monthNameArrayKey',
   default: [],

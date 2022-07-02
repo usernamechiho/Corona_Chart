@@ -15,7 +15,7 @@ const KoreaConfirmedChart = () => {
 
   useMount(() => setMonthName(getMonthNameArray()))
 
-  const { isLoading, isFetching } = useQuery('kr-covid', fetchKrData, {
+  const { isLoading } = useQuery('kr-covid', fetchKrData, {
     staleTime: Infinity,
     onSuccess: (data) => setKrCovidData(data),
   })
@@ -38,7 +38,6 @@ const KoreaConfirmedChart = () => {
   }
 
   if (isLoading) return <Spinner />
-  if (isFetching) return <Spinner />
 
   return (
     <VictoryChart theme={VictoryTheme.material} domainPadding={20} width={500}>

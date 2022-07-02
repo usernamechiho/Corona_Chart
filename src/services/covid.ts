@@ -6,6 +6,11 @@ export const fetchKrData = async () => {
   return data
 }
 
+export const fetchJpData = async () => {
+  const { data } = await axios.get('https://api.covid19api.com/total/dayone/country/jp')
+  return data
+}
+
 const currentDate: Date = new Date()
 const currentYear = currentDate.getFullYear()
 const currentMonth = currentDate.getMonth() + 1
