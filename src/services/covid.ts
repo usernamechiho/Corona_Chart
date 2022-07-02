@@ -43,6 +43,8 @@ const pastSixMonthArray = () => {
 const findPreviousMonth = (covidArray: CovidType[]) => {
   const monthArray = pastSixMonthArray()
 
+  console.log(monthArray)
+
   return monthArray.map((month) => {
     if (month > 9) return covidArray.filter((covid: CovidType) => covid.Date.includes(`${currentYear}-${month}`))
     return covidArray.filter((covid: CovidType) => covid.Date.includes(`${currentYear}-0${month}`))
