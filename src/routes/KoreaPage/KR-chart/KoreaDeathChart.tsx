@@ -47,7 +47,7 @@ const KoreaDeathChart = () => {
       />
       <VictoryAxis
         dependentAxis
-        tickFormat={(x) => `${(x / 1000).toLocaleString()}만`}
+        tickFormat={(x) => `${(x / 10000).toLocaleString()}만`}
         style={{
           grid: { stroke: '#90A4AE', strokeWidth: 0.5 },
         }}
