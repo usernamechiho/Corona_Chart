@@ -2,14 +2,14 @@ import styles from './sideBarItem.module.scss'
 
 import { cx } from 'styles'
 import { NavLink } from 'react-router-dom'
-import { HomeIcon, KoreaIcon, JapanIcon } from 'assets/svgs'
+import { WorldwideIcon, KoreaIcon, JapanIcon } from 'assets/svgs'
 
 const NAV_ITEM = [
   {
     id: 1,
     href: '/',
     text: 'Home',
-    icon: <HomeIcon className={styles.homeIcon} />,
+    icon: <WorldwideIcon className={styles.worldwideIcon} />,
   },
   {
     id: 2,
