@@ -1,9 +1,19 @@
 import { ResponsiveChoropleth } from '@nivo/geo'
 
+import { useQuery } from 'react-query'
+import { fetchWorldwideData } from 'services/covid'
+
 import worldwide from 'services/worldwide'
 import feature from 'assets/jsons/feature.json'
 
 const MainPage = () => {
+  const { isLoading } = useQuery('worldwide-covid', fetchWorldwideData, {
+    staleTime: Infinity,
+    onSuccess: (data) => {
+      console.log(data)
+    },
+  })
+
   return (
     <div style={{ width: '1000px', height: '700px' }}>
       <ResponsiveChoropleth

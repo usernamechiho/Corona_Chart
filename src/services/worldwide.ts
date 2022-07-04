@@ -680,7 +680,7 @@ export default [
     value: 805423,
   },
   {
-    id: 'KOR',
+    id: 'KR',
     value: 977973,
   },
 ]
