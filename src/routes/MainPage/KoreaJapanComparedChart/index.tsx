@@ -1,4 +1,4 @@
-import { VictoryChart, VictoryGroup, VictoryBar, VictoryTheme } from 'victory'
+import { VictoryChart, VictoryGroup, VictoryBar, VictoryTheme, VictoryAxis, VictoryTooltip } from 'victory'
 
 import { useQueries } from 'react-query'
 
@@ -55,11 +55,33 @@ const KoreaJapanComparedChart = () => {
   if (results[1].status === 'loading') return <Spinner />
 
   return (
-    <VictoryChart theme={VictoryTheme.material} domainPadding={40} width={700} height={300}>
-      <VictoryGroup offset={40} colorScale='qualitative'>
-        <VictoryBar data={activeStatsObject(krCovidArray)} x='Month' y='Confirmed' />
-        <VictoryBar data={activeStatsObject(jpCovidArray)} x='Month' y='Confirmed' />
+    <VictoryChart theme={VictoryTheme.material} domainPadding={40} width={700} height={400}>
+      <VictoryGroup offset={30} colorScale='qualitative'>
+        <VictoryBar
+          data={activeStatsObject(krCovidArray)}
+          x='Month'
+          y='Confirmed'
+          labelComponent={<VictoryTooltip />}
+        />
+        <VictoryBar
+          data={activeStatsObject(jpCovidArray)}
+          x='Month'
+          y='Confirmed'
+          labelComponent={<VictoryTooltip />}
+        />
       </VictoryGroup>
+      <VictoryAxis
+        style={{
+          grid: { stroke: '#90A4AE', strokeWidth: 0.5 },
+        }}
+      />
+      <VictoryAxis
+        style={{
+          grid: { stroke: '#90A4AE', strokeWidth: 0.5 },
+        }}
+        dependentAxis
+        tickFormat={(x) => `${(x / 1000000).toLocaleString()}M`}
+      />
     </VictoryChart>
   )
 }

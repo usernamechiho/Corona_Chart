@@ -79,7 +79,7 @@
   height: 60px;
   font-family: Jost, sans-serif;
   color: colors.$WHITE;
-  background: #83b1e0;
+  background: colors.$SECTION_HEADER;
   border-top-left-radius: 9px;
   border-top-right-radius: 9px;
   @include flexbox.flexbox;

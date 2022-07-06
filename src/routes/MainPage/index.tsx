@@ -31,7 +31,7 @@ const MainPage = () => {
   return (
     <div className={styles.contentContainer}>
       <header className={styles.pageHeader}>
-        <h1>OUR GLOBAL PRESENSE</h1>
+        <h1>OUR GLOBAL PRESENCE</h1>
         <p>COVID19 Figures for Every Nation</p>
       </header>
       <main className={styles.mainContainer}>
@@ -67,7 +67,12 @@ const MainPage = () => {
         <aside>
           <TodayWorldCovid />
         </aside>
-        <section>
+        <section className={styles.koreaJapanComparisonContainer}>
+          <div className={styles.comparisonHeader}>한국 일본 확진자 추이 비교 차트</div>
+          <main className={styles.chartBarDesc}>
+            <div className={styles.krBar} /> Korea
+            <div className={styles.jpBar} /> Japan
+          </main>
           <KoreaJapanComparedChart />
         </section>
       </main>
