@@ -22,3 +22,13 @@ export interface CovidChartType {
   Active: number
   Month: string
 }
+
+export interface TodayWorldCovidType {
+  Date: string
+  NewConfirmed: number
+  NewDeaths: number
+  NewRecovered: 0 | number
+  TotalConfirmed: number
+  TotalRecovered: 0 | number
+  TotalDeaths: number
+}

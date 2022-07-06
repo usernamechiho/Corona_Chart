@@ -17,9 +17,9 @@
 
 .pageHeader {
   flex-direction: column;
+  margin-bottom: 20px;
   font-family: 'Fjalla One', sans-serif;
   color: colors.$WHITE;
-  letter-spacing: 2px;
   @include flexbox.flexbox;
 
   h1 {
