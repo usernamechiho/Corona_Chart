@@ -40,6 +40,17 @@ const JapanDeathChart = () => {
 
   return (
     <VictoryChart theme={VictoryTheme.material} domainPadding={20} width={500}>
+      <VictoryBar
+        animate={{
+          duration: 2000,
+          onLoad: { duration: 1000 },
+        }}
+        data={deathStatsObject()}
+        style={{ data: { fill: '#c43a31' } }}
+        x='Month'
+        y='Death'
+        labelComponent={<VictoryTooltip />}
+      />
       <VictoryAxis
         style={{
           grid: { stroke: '#90A4AE', strokeWidth: 0.5 },
@@ -51,17 +62,6 @@ const JapanDeathChart = () => {
         style={{
           grid: { stroke: '#90A4AE', strokeWidth: 0.5 },
         }}
-      />
-      <VictoryBar
-        animate={{
-          duration: 2000,
-          onLoad: { duration: 1000 },
-        }}
-        data={deathStatsObject()}
-        style={{ data: { fill: '#ff6347' } }}
-        x='Month'
-        y='Death'
-        labelComponent={<VictoryTooltip />}
       />
     </VictoryChart>
   )

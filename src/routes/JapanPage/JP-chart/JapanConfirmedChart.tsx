@@ -16,7 +16,7 @@ const JapanConfirmedChart = () => {
   useMount(() => setMonthName(getMonthNameArray()))
 
   const { isLoading } = useQuery('jp-covid', fetchJpData, {
-    staleTime: Infinity,
+    staleTime: 1000 * 60 * 60 * 24,
     onSuccess: (data) => setJpCovidData(data),
   })
 
@@ -41,6 +41,17 @@ const JapanConfirmedChart = () => {
 
   return (
     <VictoryChart theme={VictoryTheme.material} domainPadding={20} width={500}>
+      <VictoryBar
+        style={{ data: { fill: '#927766' } }}
+        animate={{
+          duration: 2000,
+          onLoad: { duration: 1000 },
+        }}
+        data={activeStatsObject()}
+        x='Month'
+        y='Confirmed'
+        labelComponent={<VictoryTooltip />}
+      />
       <VictoryAxis
         style={{
           grid: { stroke: '#90A4AE', strokeWidth: 0.5 },
@@ -52,17 +63,6 @@ const JapanConfirmedChart = () => {
         }}
         dependentAxis
         tickFormat={(x) => `${(x / 10000).toLocaleString()}만`}
-      />
-      <VictoryBar
-        style={{ data: { fill: '#3792cb' } }}
-        animate={{
-          duration: 2000,
-          onLoad: { duration: 1000 },
-        }}
-        data={activeStatsObject()}
-        x='Month'
-        y='Confirmed'
-        labelComponent={<VictoryTooltip />}
       />
     </VictoryChart>
   )

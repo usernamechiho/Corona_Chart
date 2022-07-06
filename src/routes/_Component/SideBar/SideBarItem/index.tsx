@@ -8,7 +8,7 @@ const NAV_ITEM = [
   {
     id: 1,
     href: '/',
-    text: 'Home',
+    text: 'World',
     icon: <WorldwideIcon className={styles.worldwideIcon} />,
   },
   {

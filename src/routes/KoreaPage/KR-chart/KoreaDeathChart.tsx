@@ -16,7 +16,7 @@ const KoreaDeathChart = () => {
   useMount(() => setMonthName(getMonthNameArray()))
 
   const { isLoading } = useQuery('kr-covid', fetchKrData, {
-    staleTime: Infinity,
+    staleTime: 1000 * 60 * 60 * 24,
     onSuccess: (data) => setKrCovidData(data),
   })
 
@@ -41,11 +41,6 @@ const KoreaDeathChart = () => {
   return (
     <VictoryChart theme={VictoryTheme.material} domainPadding={20} width={500}>
       <VictoryAxis
-        style={{
-          grid: { stroke: '#90A4AE', strokeWidth: 0.5 },
-        }}
-      />
-      <VictoryAxis
         dependentAxis
         tickFormat={(x) => `${(x / 10000).toLocaleString()}만`}
         style={{
@@ -58,10 +53,15 @@ const KoreaDeathChart = () => {
           onLoad: { duration: 1000 },
         }}
         data={deathStatsObject()}
-        style={{ data: { fill: '#ff6347' } }}
+        style={{ data: { fill: '#c43a31' } }}
         x='Month'
         y='Death'
         labelComponent={<VictoryTooltip />}
+      />
+      <VictoryAxis
+        style={{
+          grid: { stroke: '#90A4AE', strokeWidth: 0.5 },
+        }}
       />
     </VictoryChart>
   )
