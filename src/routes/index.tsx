@@ -5,6 +5,7 @@ import SideBar from './_Component/SideBar'
 import MainPage from './MainPage'
 import KoreaPage from './KoreaPage'
 import JapanPage from './JapanPage'
+import JapanAndKoreaContainer from './JapanAndKoreaContainer'
 
 const App = () => {
   return (
@@ -12,9 +13,11 @@ const App = () => {
       <SideBar />
       <main className={styles.contentContainer}>
         <Routes>
+          <Route element={<JapanAndKoreaContainer />}>
+            <Route path='/korea' element={<KoreaPage />} />
+            <Route path='/japan' element={<JapanPage />} />
+          </Route>
           <Route path='' element={<MainPage />} />
-          <Route path='/korea' element={<KoreaPage />} />
-          <Route path='/japan' element={<JapanPage />} />
         </Routes>
       </main>
     </div>
