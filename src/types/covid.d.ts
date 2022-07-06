@@ -13,6 +13,11 @@ export interface CovidType {
   Recovered: number
 }
 
+export interface WorldwideType {
+  id: string
+  value: number
+}
+
 export interface CovidChartType {
   Active: number
   Month: string

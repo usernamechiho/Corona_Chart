@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query'
 import { useRecoilState } from 'recoil'
-import { krCovidInfoArray, monthNameArray } from 'states/covid'
-import { fetchKrData, getMonthNameArray, getMonthFinalData } from 'services/covid'
+import { jpCovidInfoArray, monthNameArray } from 'states/covid'
+import { fetchJpData, getMonthNameArray, getMonthFinalData } from 'services/covid'
 
 import { useMount } from 'hooks'
 
@@ -9,19 +9,19 @@ import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryTooltip } f
 
 import Spinner from 'routes/_Component/Spinner'
 
-const KoreaDeathChart = () => {
-  const [krCovidData, setKrCovidData] = useRecoilState(krCovidInfoArray)
+const JapanDeathChart = () => {
+  const [jpCovidData, setJpCovidData] = useRecoilState(jpCovidInfoArray)
   const [monthName, setMonthName] = useRecoilState(monthNameArray)
 
   useMount(() => setMonthName(getMonthNameArray()))
 
-  const { isLoading } = useQuery('kr-covid', fetchKrData, {
+  const { isLoading } = useQuery('jp-covid', fetchJpData, {
     staleTime: 1000 * 60 * 60 * 24,
-    onSuccess: (data) => setKrCovidData(data),
+    onSuccess: (data) => setJpCovidData(data),
   })
 
   const deathStatsObject = () => {
-    const dataArray = getMonthFinalData(krCovidData)
+    const dataArray = getMonthFinalData(jpCovidData)
     const monthArray = monthName
 
     const result = dataArray.map((item: any) => {
@@ -40,13 +40,6 @@ const KoreaDeathChart = () => {
 
   return (
     <VictoryChart theme={VictoryTheme.material} domainPadding={20} width={500}>
-      <VictoryAxis
-        dependentAxis
-        tickFormat={(x) => `${(x / 10000).toLocaleString()}만`}
-        style={{
-          grid: { stroke: '#90A4AE', strokeWidth: 0.5 },
-        }}
-      />
       <VictoryBar
         animate={{
           duration: 2000,
@@ -63,8 +56,15 @@ const KoreaDeathChart = () => {
           grid: { stroke: '#90A4AE', strokeWidth: 0.5 },
         }}
       />
+      <VictoryAxis
+        dependentAxis
+        tickFormat={(x) => `${(x / 10000).toLocaleString()}만`}
+        style={{
+          grid: { stroke: '#90A4AE', strokeWidth: 0.5 },
+        }}
+      />
     </VictoryChart>
   )
 }
 
-export default KoreaDeathChart
+export default JapanDeathChart

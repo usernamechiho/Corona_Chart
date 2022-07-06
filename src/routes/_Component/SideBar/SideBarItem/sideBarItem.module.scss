@@ -23,25 +23,16 @@
   .iconText {
     margin-right: 100px;
   }
-
-  .homeIcon {
-    stroke: colors.$SIDEBAR_FONT;
-  }
-
-  .koreaIcon {
-    fill: colors.$SIDEBAR_FONT;
-  }
-
-  .japanIcon {
-    fill: colors.$SIDEBAR_FONT;
-  }
 }
 
 .isActive {
   border-right: 5px solid colors.$SIDEBAR_ISACTIVE;
 
-  .homeIcon {
-    stroke: colors.$SIDEBAR_ISACTIVE;
+  .worldwideIcon {
+    path {
+      fill: colors.$WHITE;
+      stroke: colors.$SIDEBAR_ISACTIVE;
+    }
   }
 
   .koreaIcon {

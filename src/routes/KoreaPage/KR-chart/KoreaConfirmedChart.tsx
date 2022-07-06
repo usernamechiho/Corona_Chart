@@ -1,4 +1,4 @@
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryTooltip, LineSegment } from 'victory'
+import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryTooltip } from 'victory'
 
 import { useMount } from 'hooks'
 
@@ -15,8 +15,8 @@ const KoreaConfirmedChart = () => {
 
   useMount(() => setMonthName(getMonthNameArray()))
 
-  const { isLoading, isFetching } = useQuery('kr-covid', fetchKrData, {
-    staleTime: Infinity,
+  const { isLoading } = useQuery('kr-covid', fetchKrData, {
+    staleTime: 1000 * 60 * 60 * 24,
     onSuccess: (data) => setKrCovidData(data),
   })
 
@@ -38,10 +38,20 @@ const KoreaConfirmedChart = () => {
   }
 
   if (isLoading) return <Spinner />
-  if (isFetching) return <Spinner />
 
   return (
     <VictoryChart theme={VictoryTheme.material} domainPadding={20} width={500}>
+      <VictoryBar
+        style={{ data: { fill: '#3792cb' } }}
+        animate={{
+          duration: 2000,
+          onLoad: { duration: 1000 },
+        }}
+        data={activeStatsObject()}
+        x='Month'
+        y='Confirmed'
+        labelComponent={<VictoryTooltip />}
+      />
       <VictoryAxis
         style={{
           grid: { stroke: '#90A4AE', strokeWidth: 0.5 },
@@ -53,17 +63,6 @@ const KoreaConfirmedChart = () => {
         }}
         dependentAxis
         tickFormat={(x) => `${(x / 10000).toLocaleString()}만`}
-      />
-      <VictoryBar
-        style={{ data: { fill: '#3792cb' } }}
-        animate={{
-          duration: 2000,
-          onLoad: { duration: 1000 },
-        }}
-        data={activeStatsObject()}
-        x='Month'
-        y='Confirmed'
-        labelComponent={<VictoryTooltip />}
       />
     </VictoryChart>
   )

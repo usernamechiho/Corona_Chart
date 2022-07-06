@@ -6,6 +6,16 @@ export const fetchKrData = async () => {
   return data
 }
 
+export const fetchJpData = async () => {
+  const { data } = await axios.get('https://api.covid19api.com/total/dayone/country/jp')
+  return data
+}
+
+export const fetchWorldwideData = async () => {
+  const { data } = await axios.get('https://api.covid19api.com/summary')
+  return data
+}
+
 const currentDate: Date = new Date()
 const currentYear = currentDate.getFullYear()
 const currentMonth = currentDate.getMonth() + 1
@@ -42,8 +52,6 @@ const pastSixMonthArray = () => {
 
 const findPreviousMonth = (covidArray: CovidType[]) => {
   const monthArray = pastSixMonthArray()
-
-  console.log(monthArray)
 
   return monthArray.map((month) => {
     if (month > 9) return covidArray.filter((covid: CovidType) => covid.Date.includes(`${currentYear}-${month}`))
