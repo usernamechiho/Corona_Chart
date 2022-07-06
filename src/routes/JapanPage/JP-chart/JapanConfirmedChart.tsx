@@ -42,7 +42,7 @@ const JapanConfirmedChart = () => {
   return (
     <VictoryChart theme={VictoryTheme.material} domainPadding={20} width={500}>
       <VictoryBar
-        style={{ data: { fill: '#927766' } }}
+        style={{ data: { fill: '#40b29e' } }}
         animate={{
           duration: 2000,
           onLoad: { duration: 1000 },
@@ -54,7 +54,7 @@ const JapanConfirmedChart = () => {
       />
       <VictoryAxis
         style={{
-          grid: { stroke: '#90A4AE', strokeWidth: 0.5 },
+          grid: { stroke: '#ffffff', strokeWidth: 0.5 },
         }}
       />
       <VictoryAxis

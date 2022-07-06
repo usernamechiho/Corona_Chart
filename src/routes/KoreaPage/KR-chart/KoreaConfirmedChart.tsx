@@ -42,7 +42,7 @@ const KoreaConfirmedChart = () => {
   return (
     <VictoryChart theme={VictoryTheme.material} domainPadding={20} width={500}>
       <VictoryBar
-        style={{ data: { fill: '#3792cb' } }}
+        style={{ data: { fill: '#334d5b' } }}
         animate={{
           duration: 2000,
           onLoad: { duration: 1000 },

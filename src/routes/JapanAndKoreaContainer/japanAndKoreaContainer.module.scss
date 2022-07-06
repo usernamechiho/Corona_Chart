@@ -1,11 +1,13 @@
 @use '/src/styles/constants/colors';
 @use '/src/styles/mixins/responsive';
 
-.appContainer {
+.contentContainer {
   height: 100vh;
-  margin-left: 0;
+  padding: 80px;
+  overflow-y: scroll;
+  background: colors.$KR_JP_BACKGROUND;
 
   @include responsive.after(MD) {
-    margin-left: 280px;
+    padding: 50px 100px;
   }
 }
