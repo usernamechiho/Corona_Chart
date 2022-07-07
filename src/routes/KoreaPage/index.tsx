@@ -14,6 +14,8 @@ import Spinner from 'routes/_Component/Spinner'
 const KoreaPage = () => {
   const [krCovidData] = useRecoilState(krCovidInfoArray)
 
+  console.log(krCovidData)
+
   const confirmedNumberComparedToYesterday = () => {
     if (krCovidData.length) {
       const getLastTwoData = krCovidData.slice(-2)

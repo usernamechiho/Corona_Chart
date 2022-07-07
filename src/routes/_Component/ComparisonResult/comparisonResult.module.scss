@@ -1,7 +1,21 @@
-.header {
-  color: red;
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/flexbox';
+@use '/src/styles/mixins/responsive';
+
+.comparisonResultContainer {
+  display: flex;
+  flex-direction: column;
+
+  @include responsive.after(MD) {
+    flex-direction: row;
+
+    &:hover {
+      transform: translateY(-10px);
+    }
+  }
 }
 
 .numberContainer {
-  color: red;
+  display: flex;
+  font-size: 40px;
 }
