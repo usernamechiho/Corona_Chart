@@ -49,12 +49,13 @@
   }
 
   section:nth-child(3) {
+    @include flexbox.flexbox;
+    justify-content: space-evenly;
     width: 80%;
     height: 200px;
-    padding: 30px;
-    text-align: center;
-    background: colors.$WHITE;
-    border-radius: 20px;
+    color: colors.$WHITE;
+    background: colors.$CONFIRMED_COMPARISON_BOX;
+    border-radius: 10px;
   }
 
   @include responsive.after(MD) {
