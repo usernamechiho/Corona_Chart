@@ -13,8 +13,6 @@ import ComparisonResult from 'routes/_Component/ComparisonResult'
 const KoreaPage = () => {
   const [krCovidData] = useRecoilState(krCovidInfoArray)
 
-  const confirmedNumberForToday: (string | number)[] | any = confirmedNumberComparedToYesterday(krCovidData)
-
   return (
     <div className={styles.koreaPageContainer}>
       <header className={styles.headerContainer}>
@@ -31,7 +29,7 @@ const KoreaPage = () => {
           <h1>최근 6개월 사망자 통계</h1>
           <KoreaDeathChart />
         </section>
-        {krCovidData && <ComparisonResult resultArray={confirmedNumberForToday} />}
+        {krCovidData && <ComparisonResult resultArray={confirmedNumberComparedToYesterday(krCovidData)} />}
       </main>
     </div>
   )

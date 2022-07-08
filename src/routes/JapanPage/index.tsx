@@ -13,8 +13,6 @@ import Divider from 'routes/_Component/Divider'
 const JapanPage = () => {
   const [jpCovidData] = useRecoilState(jpCovidInfoArray)
 
-  const confirmedNumberForToday: (string | number)[] | any = confirmedNumberComparedToYesterday(jpCovidData)
-
   return (
     <div className={styles.koreaPageContainer}>
       <header className={styles.headerContainer}>
@@ -31,7 +29,7 @@ const JapanPage = () => {
           <h1>최근 6개월 사망자 통계</h1>
           <JapanDeathChart />
         </section>
-        {jpCovidData && <ComparisonResult resultArray={confirmedNumberForToday} />}
+        {jpCovidData && <ComparisonResult resultArray={confirmedNumberComparedToYesterday(jpCovidData)} />}
       </main>
     </div>
   )

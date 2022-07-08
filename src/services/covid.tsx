@@ -68,7 +68,7 @@ export const getMonthFinalData = (covidArray: CovidType[]) => {
   return finalData
 }
 
-export const confirmedNumberComparedToYesterday = (covidDataArray: any[]) => {
+export const confirmedNumberComparedToYesterday = (covidDataArray: CovidType[]) => {
   if (covidDataArray.length) {
     const getLastTwoData = covidDataArray.slice(-2)
     const confirmedValueCalculation = getLastTwoData[1].Active - getLastTwoData[0].Active
@@ -78,34 +78,34 @@ export const confirmedNumberComparedToYesterday = (covidDataArray: any[]) => {
   return <Spinner />
 }
 
-export const deathStatsObject = (covidDataArray: any[], monthNameArray: string[]) => {
+export const deathStatsObject = (covidDataArray: CovidType[], monthNameArray: string[]) => {
   const dataArray = getMonthFinalData(covidDataArray)
   const monthArray = monthNameArray
 
-  const result = dataArray.map((item: any) => {
-    const monthNumber = item.Date.split('-')[1]
-    const Month = monthArray[monthNumber - 1]
+  const result = dataArray.map((item: CovidType | undefined) => {
+    const monthNumber = item?.Date.split('-')[1]
+    const Month = monthArray[Number(monthNumber) - 1]
     return {
       Month,
-      Death: item.Deaths,
-      label: `${item.Deaths.toLocaleString()} 명`,
+      Death: item?.Deaths,
+      label: `${item?.Deaths.toLocaleString()} 명`,
     }
   })
   return result
 }
 
-export const activeStatsObject = (covidDataArray: any[], monthNameArray: string[]) => {
+export const activeStatsObject = (covidDataArray: CovidType[], monthNameArray: string[]) => {
   const dataArray = getMonthFinalData(covidDataArray)
   const monthArray = monthNameArray
 
-  const result = dataArray.map((item: any) => {
-    const monthNumber = item.Date.split('-')[1]
-    const Month = monthArray[monthNumber - 1]
+  const result = dataArray.map((item: CovidType | undefined) => {
+    const monthNumber = item?.Date.split('-')[1]
+    const Month = monthArray[Number(monthNumber) - 1]
 
     return {
       Month,
-      Confirmed: item.Confirmed,
-      label: `${item.Confirmed.toLocaleString()} 명`,
+      Confirmed: item?.Confirmed,
+      label: `${item?.Confirmed.toLocaleString()} 명`,
     }
   })
   return result

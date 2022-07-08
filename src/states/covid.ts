@@ -1,5 +1,5 @@
 import { atom } from 'recoil'
-import { CovidType, WorldwideType, TodayWorldCovidType } from 'types/covid'
+import { CovidType, TodayWorldCovidType, WorldNationCovidType } from 'types/covid'
 
 export const krCovidInfoArray = atom<CovidType[]>({
   key: '#krCovidInfoArrayKey',
@@ -11,7 +11,7 @@ export const jpCovidInfoArray = atom<CovidType[]>({
   default: [],
 })
 
-export const worldWideInfoArray = atom<WorldwideType[]>({
+export const worldWideInfoArray = atom<WorldNationCovidType[]>({
   key: '#worldWideInfoArray',
   default: [],
 })
