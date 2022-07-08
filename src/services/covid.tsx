@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Spinner from 'routes/_Component/Spinner'
 import { CovidType } from 'types/covid'
 
 export const fetchKrData = async () => {
@@ -35,14 +36,14 @@ export const getMonthNameArray = () => {
     'November',
     'December',
   ]
-  let monthArr = []
+  const monthArr = []
   for (let i = 0; i < currentMonth; i += 1) monthArr.push(MONTH_NAME[i])
 
   return monthArr
 }
 
 const pastSixMonthArray = () => {
-  let newMonthArr = []
+  const newMonthArr = []
   for (let i = 1; i <= currentMonth; i += 1) newMonthArr.push(i)
 
   if (newMonthArr.length > 6) return newMonthArr.slice(-6)
@@ -61,8 +62,51 @@ const findPreviousMonth = (covidArray: CovidType[]) => {
 
 export const getMonthFinalData = (covidArray: CovidType[]) => {
   const data = findPreviousMonth(covidArray)
-  let finalData = []
+  const finalData = []
   for (let i = 0; i < data.length; i += 1) finalData.push(data[i].at(-1))
 
   return finalData
+}
+
+export const confirmedNumberComparedToYesterday = (covidDataArray: CovidType[]) => {
+  if (covidDataArray.length) {
+    const getLastTwoData = covidDataArray.slice(-2)
+    const confirmedValueCalculation = getLastTwoData[1].Active - getLastTwoData[0].Active
+    return [getLastTwoData[1].Date.split('T')[0], confirmedValueCalculation]
+  }
+
+  return <Spinner />
+}
+
+export const deathStatsObject = (covidDataArray: CovidType[], monthNameArray: string[]) => {
+  const dataArray = getMonthFinalData(covidDataArray)
+  const monthArray = monthNameArray
+
+  const result = dataArray.map((item: CovidType | undefined) => {
+    const monthNumber = item?.Date.split('-')[1]
+    const Month = monthArray[Number(monthNumber) - 1]
+    return {
+      Month,
+      Death: item?.Deaths,
+      label: `${item?.Deaths.toLocaleString()} 명`,
+    }
+  })
+  return result
+}
+
+export const activeStatsObject = (covidDataArray: CovidType[], monthNameArray: string[]) => {
+  const dataArray = getMonthFinalData(covidDataArray)
+  const monthArray = monthNameArray
+
+  const result = dataArray.map((item: CovidType | undefined) => {
+    const monthNumber = item?.Date.split('-')[1]
+    const Month = monthArray[Number(monthNumber) - 1]
+
+    return {
+      Month,
+      Confirmed: item?.Confirmed,
+      label: `${item?.Confirmed.toLocaleString()} 명`,
+    }
+  })
+  return result
 }

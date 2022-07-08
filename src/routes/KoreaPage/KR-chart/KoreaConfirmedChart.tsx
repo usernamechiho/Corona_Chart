@@ -2,7 +2,7 @@ import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryTooltip } f
 
 import { useMount } from 'hooks'
 
-import { fetchKrData, getMonthNameArray, getMonthFinalData } from 'services/covid'
+import { fetchKrData, getMonthNameArray, activeStatsObject } from 'services/covid'
 import { useQuery } from 'react-query'
 import { useRecoilState } from 'recoil'
 import { krCovidInfoArray, monthNameArray } from 'states/covid'
@@ -20,23 +20,6 @@ const KoreaConfirmedChart = () => {
     onSuccess: (data) => setKrCovidData(data),
   })
 
-  const activeStatsObject = () => {
-    const dataArray = getMonthFinalData(krCovidData)
-    const monthArray = monthName
-
-    const result = dataArray.map((item: any) => {
-      const monthNumber = item.Date.split('-')[1]
-      const Month = monthArray[monthNumber - 1]
-
-      return {
-        Month,
-        Confirmed: item.Confirmed,
-        label: `${item.Confirmed.toLocaleString()} 명`,
-      }
-    })
-    return result
-  }
-
   if (isLoading) return <Spinner />
 
   return (
@@ -47,7 +30,7 @@ const KoreaConfirmedChart = () => {
           duration: 2000,
           onLoad: { duration: 1000 },
         }}
-        data={activeStatsObject()}
+        data={activeStatsObject(krCovidData, monthName)}
         x='Month'
         y='Confirmed'
         labelComponent={<VictoryTooltip />}

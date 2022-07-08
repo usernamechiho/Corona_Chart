@@ -5,6 +5,7 @@ import { useQuery } from 'react-query'
 import { fetchWorldwideData } from 'services/covid'
 import { useRecoilState } from 'recoil'
 import { worldWideInfoArray } from 'states/covid'
+import { WorldNationCovidType } from 'types/covid'
 
 import feature from 'assets/jsons/feature.json'
 import Spinner from 'routes/_Component/Spinner'
@@ -19,7 +20,7 @@ const MainPage = () => {
     onSuccess: (data) => setWorldwideData(data.Countries),
   })
 
-  const changeWorldwideDataArrayFormat = (worldArray: any[]) => {
+  const changeWorldwideDataArrayFormat = (worldArray: WorldNationCovidType[]) => {
     return worldArray.map((data) => ({
       id: data.CountryCode,
       value: data.TotalConfirmed,

@@ -10,17 +10,27 @@ export interface CovidType {
   Lat: string
   Lon: string
   Province: ''
-  Recovered: number
-}
-
-export interface WorldwideType {
-  id: string
-  value: number
+  Recovered: 0 | number
 }
 
 export interface CovidChartType {
   Active: number
   Month: string
+}
+
+export interface WorldNationCovidType {
+  Country: string
+  CountryCode: string
+  Date: string
+  ID: string
+  NewConfirmed: number
+  NewDeaths: number
+  NewRecovered: 0
+  Premium: null
+  Slug: string
+  TotalConfirmed: number
+  TotalDeaths: number
+  TotalRecovered: 0
 }
 
 export interface TodayWorldCovidType {
