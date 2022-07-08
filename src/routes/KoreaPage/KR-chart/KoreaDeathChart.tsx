@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query'
 import { useRecoilState } from 'recoil'
 import { krCovidInfoArray, monthNameArray } from 'states/covid'
-import { fetchKrData, getMonthNameArray, getMonthFinalData } from 'services/covid'
+import { fetchKrData, getMonthNameArray, deathStatsObject } from 'services/covid'
 
 import { useMount } from 'hooks'
 
@@ -20,22 +20,6 @@ const KoreaDeathChart = () => {
     onSuccess: (data) => setKrCovidData(data),
   })
 
-  const deathStatsObject = () => {
-    const dataArray = getMonthFinalData(krCovidData)
-    const monthArray = monthName
-
-    const result = dataArray.map((item: any) => {
-      const monthNumber = item.Date.split('-')[1]
-      const Month = monthArray[monthNumber - 1]
-      return {
-        Month,
-        Death: item.Deaths,
-        label: `${item.Deaths.toLocaleString()} 명`,
-      }
-    })
-    return result
-  }
-
   if (isLoading) return <Spinner />
 
   return (
@@ -52,7 +36,7 @@ const KoreaDeathChart = () => {
           duration: 2000,
           onLoad: { duration: 1000 },
         }}
-        data={deathStatsObject()}
+        data={deathStatsObject(krCovidData, monthName)}
         style={{ data: { fill: '#c43a31' } }}
         x='Month'
         y='Death'

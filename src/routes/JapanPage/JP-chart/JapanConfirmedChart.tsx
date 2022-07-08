@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query'
 import { useRecoilState } from 'recoil'
 import { jpCovidInfoArray, monthNameArray } from 'states/covid'
-import { fetchJpData, getMonthNameArray, getMonthFinalData } from 'services/covid'
+import { fetchJpData, getMonthNameArray, activeStatsObject } from 'services/covid'
 
 import { useMount } from 'hooks'
 
@@ -20,23 +20,6 @@ const JapanConfirmedChart = () => {
     onSuccess: (data) => setJpCovidData(data),
   })
 
-  const activeStatsObject = () => {
-    const dataArray = getMonthFinalData(jpCovidData)
-    const monthArray = monthName
-
-    const result = dataArray.map((item: any) => {
-      const monthNumber = item.Date.split('-')[1]
-      const Month = monthArray[monthNumber - 1]
-
-      return {
-        Month,
-        Confirmed: item.Confirmed,
-        label: `${item.Confirmed.toLocaleString()} 명`,
-      }
-    })
-    return result
-  }
-
   if (isLoading) return <Spinner />
 
   return (
@@ -47,7 +30,7 @@ const JapanConfirmedChart = () => {
           duration: 2000,
           onLoad: { duration: 1000 },
         }}
-        data={activeStatsObject()}
+        data={activeStatsObject(jpCovidData, monthName)}
         x='Month'
         y='Confirmed'
         labelComponent={<VictoryTooltip />}
