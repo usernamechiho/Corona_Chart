@@ -2,6 +2,7 @@ import styles from './koreaPage.module.scss'
 
 import { useRecoilState } from 'recoil'
 import { krCovidInfoArray } from 'states/covid'
+import { confirmedNumberComparedToYesterday } from 'services/covid'
 
 import { StatisticIcon } from 'assets/svgs'
 import Divider from 'routes/_Component/Divider'
@@ -9,24 +10,10 @@ import KoreaConfirmedChart from './KR-chart/KoreaConfirmedChart'
 import KoreaDeathChart from './KR-chart/KoreaDeathChart'
 import ComparisonResult from 'routes/_Component/ComparisonResult'
 
-import Spinner from 'routes/_Component/Spinner'
-
 const KoreaPage = () => {
   const [krCovidData] = useRecoilState(krCovidInfoArray)
 
-  console.log(krCovidData)
-
-  const confirmedNumberComparedToYesterday = () => {
-    if (krCovidData.length) {
-      const getLastTwoData = krCovidData.slice(-2)
-      const confirmedValueCalculation = getLastTwoData[1].Active - getLastTwoData[0].Active
-      return [getLastTwoData[1].Date.split('T')[0], confirmedValueCalculation]
-    }
-
-    return <Spinner />
-  }
-
-  const confirmedNumberForToday: (string | number)[] | any = confirmedNumberComparedToYesterday()
+  const confirmedNumberForToday: (string | number)[] | any = confirmedNumberComparedToYesterday(krCovidData)
 
   return (
     <div className={styles.koreaPageContainer}>

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Spinner from 'routes/_Component/Spinner'
 import { CovidType } from 'types/covid'
 
 export const fetchKrData = async () => {
@@ -65,4 +66,14 @@ export const getMonthFinalData = (covidArray: CovidType[]) => {
   for (let i = 0; i < data.length; i += 1) finalData.push(data[i].at(-1))
 
   return finalData
+}
+
+export const confirmedNumberComparedToYesterday = (covidDataArray: any[]) => {
+  if (covidDataArray.length) {
+    const getLastTwoData = covidDataArray.slice(-2)
+    const confirmedValueCalculation = getLastTwoData[1].Active - getLastTwoData[0].Active
+    return [getLastTwoData[1].Date.split('T')[0], confirmedValueCalculation]
+  }
+
+  return <Spinner />
 }
