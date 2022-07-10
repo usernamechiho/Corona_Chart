@@ -5,12 +5,17 @@
 .comparisonResultContainer {
   display: flex;
   flex-direction: column;
+  transition: all 0.3s;
+
+  &:hover {
+    transform: translateY(-10px);
+  }
 
   @include responsive.after(MD) {
     flex-direction: row;
 
     &:hover {
-      transform: translateY(-10px);
+      transform: translateY(0);
     }
   }
 }
