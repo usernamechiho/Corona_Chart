@@ -1,5 +1,8 @@
 # CORONA - CHART
 
+## 🚀 DEPLOY 🚀
+https://app.netlify.com/sites/chihodev-corona/overview
+
 ## 철지난 코로나19 데이터를 다루는 이유
 
  - [x] 차트를 한번 다뤄보고 싶었다.
