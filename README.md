@@ -1,7 +1,7 @@
 # CORONA - CHART
 
 ## 🚀 DEPLOY 🚀
-https://app.netlify.com/sites/chihodev-corona/overview
+https://chihodev-corona.netlify.app/
 
 ## 철지난 코로나19 데이터를 다루는 이유
 
